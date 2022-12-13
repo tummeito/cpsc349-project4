@@ -1,6 +1,6 @@
 # Get started
 
-Run "npm install" to install dependencies
+Run "npm install" to install dependencies\
 Run "npm run start" to start web development
 
 ## Available Scripts
