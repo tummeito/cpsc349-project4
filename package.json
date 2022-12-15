@@ -18,7 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "npm-run-all --parallel pocketbase react"
+    "tailwind": "tailwindcss -i ./src/index.css -o ./src/style/main.css --watch",
+    "start": "npm-run-all --parallel react tailwind"
   },
   "eslintConfig": {
     "extends": [
