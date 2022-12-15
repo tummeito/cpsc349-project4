@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "tailwind": "tailwindcss -i ./src/index.css -o ./src/style/main.css --watch",
-    "start": "npm-run-all --parallel react tailwind"
+    "start": "npm-run-all --parallel react tailwind pocketbase"
   },
   "eslintConfig": {
     "extends": [
