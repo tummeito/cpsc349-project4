@@ -84,14 +84,14 @@ export default function GamePage({pScore, oScore}) {
         // Generating the enemy's move and updating the picture to display its correct move
         const enemyMove = RandomizeEnemyMove();
         console.log("Opponent's Move: ", enemyMove);
-        setPImg(images[enemyMove]);
-        setOImg(images[playerMove]);
+        setPImg(images[playerMove]);
+        setOImg(images[enemyMove]);
         
         if(moveKey[playerMove] === enemyMove) {
-            console.log("opponent won!");
+            console.log("player won!");
             setEnemyScore((previousScore) => previousScore+1);
         } else if(moveKey[enemyMove] === playerMove) {
-            console.log("player won!");
+            console.log("opponent won!");
             setPlayerScore((previousScore) => previousScore+1);
         } else {
             console.log("tie!");
