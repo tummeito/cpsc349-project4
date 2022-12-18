@@ -4,15 +4,56 @@ import { useState } from 'react';
 import './App.css';
 import "./style/main.css"
 
-export default function App() {
+
+const USERNAME = "tummeito@csu.fullerton.edu";
+const PASSWORD = "cpsc349project4";
+const pb = new PocketBase("http://127.0.0.1:8090");
+
+export default function App(){
 
   // If you want a more detailed explanation of what the hell this is then look inside of GamePage.jsx line 19 OR just search up what it is
   const [loggedIn, setLoggedIn] = useState(false);
 
-  function logIn() {
+  async function logIn() {
     // TODO: Add the pocketbase login to validate there is an account.
-    setLoggedIn(true);
+    const authData = await pb.admins.authWithPassword(USERNAME, PASSWORD)
+    console.log(authData);
+    let isValidLogIn = pb.authStore.isValid ? (true ? setLoggedIn(true) : setLoggedIn(false)) : false;
+    console.log(isValidLogIn);
+    // console.log(pb.authStore.isValid);
+    console.log(pb.authStore.token);
+    console.log(pb.authStore.model.id);
+    pb.authStore.clear();
   }
+
+  async function setScores() {
+    await pb.admins.authWithPassword(USERNAME, PASSWORD);
+
+    const collection = await pb.collections.create({
+      name: 'scores',
+      type: 'base',
+      schema: [
+          {
+              name: 'win_scores',
+              type: 'number',
+              required: true,
+          },
+          {
+              name: 'lose_scores',
+              type: 'number',
+              required: true,
+          },
+          {
+            name: 'usr_email',
+            type: 'email',
+            required: true,
+          },
+      ],
+    });
+
+    
+  }
+  setScores();
 
   return (
     <div className="text-center bg-slate-700">
@@ -25,7 +66,7 @@ export default function App() {
       {!loggedIn ? 
         // TODO: Make a new component for the login page, replace the junk I created below with it
         <div>
-          <h1>log in :)</h1>
+          <h1>log in :</h1>
           <button onClick={()=> {logIn()}}>click to log in</button>
         </div>
       : 
