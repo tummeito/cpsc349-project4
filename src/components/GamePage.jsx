@@ -84,6 +84,7 @@ export default function GamePage({pScore, oScore}) {
         // Generating the enemy's move and updating the picture to display its correct move
         const enemyMove = RandomizeEnemyMove();
         console.log("Opponent's Move: ", enemyMove);
+        console.log("Player's Move: ", playerMove);
         setPImg(images[playerMove]);
         setOImg(images[enemyMove]);
         
